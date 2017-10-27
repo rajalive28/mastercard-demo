@@ -1,0 +1,13 @@
+*.class
+.idea
+*.iml
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+derby.log
+# Package Files #
+#*.jar
+#*.war
+*.ear
+.settings
+.project
+.classpath
