@@ -1,0 +1,6 @@
+org\xtext\example\mydsl\ide\contentassist\antlr\MyDslParser$1.class
+org\xtext\example\mydsl\ide\contentassist\antlr\internal\InternalMyDslLexer.class
+org\xtext\example\mydsl\ide\contentassist\antlr\internal\InternalMyDslParser.class
+org\xtext\example\mydsl\ide\contentassist\antlr\internal\InternalMyDslLexer$DFA12.class
+org\xtext\example\mydsl\ide\contentassist\antlr\MyDslParser.class
+org\xtext\example\mydsl\ide\contentassist\antlr\PartialMyDslContentAssistParser.class

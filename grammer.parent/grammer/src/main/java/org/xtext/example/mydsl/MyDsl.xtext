@@ -1,0 +1,36 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Rules:
+	(ruleFragments+=RuleFragments)*;
+
+RuleFragments:
+	'create rule' ruleName=ID
+	'{'
+	(ruleBody=RuleBody)
+	'}';
+
+RuleBody:
+	'when' (payerEvent= PayerEvent)
+	(subEvent+=SubEvent)* ;
+
+PayerEvent:
+	(payerName=PayerName) (payerEventName= PayerEventName) (symbol=Symbol) amount=INT;
+
+enum PayerName:
+	MINDTREE='mindtree' | ROHIT='rohit' | ABHISHEK='abhishek';
+
+enum PayerEventName:
+	CREDIT='credit' | DEBIT='debit' ;
+
+enum Symbol:
+	GREATER='<' | LESS='>' ;
+
+SubEvent:
+	'then ' (amountEvent = AmountEvent) amount = INT 'to' (payerName=PayerName);
+
+enum AmountEvent:
+	TRANSFER='transfer' | REQUEST='request' ;
+
+
