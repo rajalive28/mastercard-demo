@@ -1,6 +1,7 @@
 package com.mastercard.demo.controllers;
 
 import com.mastercard.demo.entities.AccountEntity;
+import com.mastercard.demo.model.AccountInfoResponse;
 import com.mastercard.demo.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,13 @@ public class AccountController {
     public AccountEntity getAllAccountInfo(@PathVariable("accountNo") Long accountNo) {
         return accountService.getAccountInfo(accountNo);
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/role/{name}/{password}", method = RequestMethod.POST, produces = {APPLICATION_JSON_VALUE})
+    public AccountInfoResponse isAUser(@PathVariable("name") String name, @PathVariable("password") String password) {
+        return accountService.authenticateUser(name,password);
+    }
+
 
 }
