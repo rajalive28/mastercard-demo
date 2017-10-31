@@ -52,8 +52,8 @@ public class MyDslElementTypeProvider implements IElementTypeProvider {
 		public static IGrammarAwareElementType createRuleFragments_GroupElementType() {
 			return new IGrammarAwareElementType("RuleFragments_Group_ELEMENT_TYPE", MyDslLanguage.INSTANCE, GRAMMAR_ACCESS.getRuleFragmentsAccess().getGroup());
 		}
-		public static IGrammarAwareElementType createRuleFragments_CreateRuleKeyword_0ElementType() {
-			return new IGrammarAwareElementType("RuleFragments_CreateRuleKeyword_0_ELEMENT_TYPE", MyDslLanguage.INSTANCE, GRAMMAR_ACCESS.getRuleFragmentsAccess().getCreateRuleKeyword_0());
+		public static IGrammarAwareElementType createRuleFragments_RuleKeyword_0ElementType() {
+			return new IGrammarAwareElementType("RuleFragments_RuleKeyword_0_ELEMENT_TYPE", MyDslLanguage.INSTANCE, GRAMMAR_ACCESS.getRuleFragmentsAccess().getRuleKeyword_0());
 		}
 		public static IGrammarAwareElementType createRuleFragments_RuleNameAssignment_1ElementType() {
 			return new IGrammarAwareElementType("RuleFragments_RuleNameAssignment_1_ELEMENT_TYPE", MyDslLanguage.INSTANCE, GRAMMAR_ACCESS.getRuleFragmentsAccess().getRuleNameAssignment_1());
@@ -79,7 +79,7 @@ public class MyDslElementTypeProvider implements IElementTypeProvider {
 
 	public static final IGrammarAwareElementType RuleFragments_Group_ELEMENT_TYPE = associate(RuleFragmentsFactory.createRuleFragments_GroupElementType());
 
-	public static final IGrammarAwareElementType RuleFragments_CreateRuleKeyword_0_ELEMENT_TYPE = associate(RuleFragmentsFactory.createRuleFragments_CreateRuleKeyword_0ElementType());
+	public static final IGrammarAwareElementType RuleFragments_RuleKeyword_0_ELEMENT_TYPE = associate(RuleFragmentsFactory.createRuleFragments_RuleKeyword_0ElementType());
 
 	public static final IGrammarAwareElementType RuleFragments_RuleNameAssignment_1_ELEMENT_TYPE = associate(RuleFragmentsFactory.createRuleFragments_RuleNameAssignment_1ElementType());
 
@@ -409,8 +409,8 @@ public class MyDslElementTypeProvider implements IElementTypeProvider {
 		return RuleFragments_Group_ELEMENT_TYPE;
 	}
 	
-	public IGrammarAwareElementType getRuleFragments_CreateRuleKeyword_0ElementType() {
-		return RuleFragments_CreateRuleKeyword_0_ELEMENT_TYPE;
+	public IGrammarAwareElementType getRuleFragments_RuleKeyword_0ElementType() {
+		return RuleFragments_RuleKeyword_0_ELEMENT_TYPE;
 	}
 	
 	public IGrammarAwareElementType getRuleFragments_RuleNameAssignment_1ElementType() {

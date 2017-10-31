@@ -6,7 +6,7 @@ Rules:
 	(ruleFragments+=RuleFragments)*;
 
 RuleFragments:
-	'create rule' ruleName=ID
+	'rule' ruleName=ID
 	'{'
 	(ruleBody=RuleBody)
 	'}';

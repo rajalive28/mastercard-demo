@@ -12,6 +12,7 @@
         <module>services</module>
         <module>grammer.parent</module>
         <module>rules-dsl</module>
+        <module>iotgrammer.parent</module>
     </modules>
     <dependencyManagement>
         <dependencies>

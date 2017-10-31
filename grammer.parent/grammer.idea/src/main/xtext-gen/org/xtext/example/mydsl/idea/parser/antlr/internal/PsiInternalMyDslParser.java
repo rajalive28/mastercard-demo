@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class PsiInternalMyDslParser extends AbstractPsiAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'create rule'", "'{'", "'}'", "'when'", "'then '", "'to'", "'mindtree'", "'rohit'", "'abhishek'", "'credit'", "'debit'", "'<'", "'>'", "'transfer'", "'request'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'rule'", "'{'", "'}'", "'when'", "'then '", "'to'", "'mindtree'", "'rohit'", "'abhishek'", "'credit'", "'debit'", "'<'", "'>'", "'transfer'", "'request'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -224,7 +224,7 @@ public class PsiInternalMyDslParser extends AbstractPsiAntlrParser {
 
 
     // $ANTLR start "ruleRuleFragments"
-    // PsiInternalMyDsl.g:86:1: ruleRuleFragments returns [Boolean current=false] : (otherlv_0= 'create rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' ) ;
+    // PsiInternalMyDsl.g:86:1: ruleRuleFragments returns [Boolean current=false] : (otherlv_0= 'rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' ) ;
     public final Boolean ruleRuleFragments() throws RecognitionException {
         Boolean current = false;
 
@@ -236,14 +236,14 @@ public class PsiInternalMyDslParser extends AbstractPsiAntlrParser {
 
 
         try {
-            // PsiInternalMyDsl.g:87:1: ( (otherlv_0= 'create rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' ) )
-            // PsiInternalMyDsl.g:88:2: (otherlv_0= 'create rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' )
+            // PsiInternalMyDsl.g:87:1: ( (otherlv_0= 'rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' ) )
+            // PsiInternalMyDsl.g:88:2: (otherlv_0= 'rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' )
             {
-            // PsiInternalMyDsl.g:88:2: (otherlv_0= 'create rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' )
-            // PsiInternalMyDsl.g:89:3: otherlv_0= 'create rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}'
+            // PsiInternalMyDsl.g:88:2: (otherlv_0= 'rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}' )
+            // PsiInternalMyDsl.g:89:3: otherlv_0= 'rule' ( (lv_ruleName_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_ruleBody_3_0= ruleRuleBody ) ) otherlv_4= '}'
             {
 
-            			markLeaf(elementTypeProvider.getRuleFragments_CreateRuleKeyword_0ElementType());
+            			markLeaf(elementTypeProvider.getRuleFragments_RuleKeyword_0ElementType());
             		
             otherlv_0=(Token)match(input,11,FOLLOW_4); 
 

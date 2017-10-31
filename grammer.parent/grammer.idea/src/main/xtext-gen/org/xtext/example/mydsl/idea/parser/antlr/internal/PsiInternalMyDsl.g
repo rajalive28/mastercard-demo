@@ -87,9 +87,9 @@ ruleRuleFragments returns [Boolean current=false]
 :
 	(
 		{
-			markLeaf(elementTypeProvider.getRuleFragments_CreateRuleKeyword_0ElementType());
+			markLeaf(elementTypeProvider.getRuleFragments_RuleKeyword_0ElementType());
 		}
-		otherlv_0='create rule'
+		otherlv_0='rule'
 		{
 			doneLeaf(otherlv_0);
 		}
