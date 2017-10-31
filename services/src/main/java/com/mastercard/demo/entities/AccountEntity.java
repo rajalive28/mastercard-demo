@@ -4,10 +4,9 @@ package com.mastercard.demo.entities;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author Abhishek Raj on 28-Oct-17.
@@ -35,6 +34,21 @@ public class AccountEntity extends AbstractPersistable<Long> {
     private String password;
     @Column
     private String contactDetails;
+
+
+    @OneToMany(targetEntity = PayeeEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "account_payee_join_table",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "payees_id"))
+    private List<PayeeEntity> payeeEntity;
+
+    public List<PayeeEntity> getPayeeEntity() {
+        return payeeEntity;
+    }
+
+    public void setPayeeEntity(List<PayeeEntity> payeeEntity) {
+        this.payeeEntity = payeeEntity;
+    }
 
     public String getName() {
         return name;

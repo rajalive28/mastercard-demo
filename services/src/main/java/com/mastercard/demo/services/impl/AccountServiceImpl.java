@@ -7,11 +7,13 @@ import com.mastercard.demo.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Abhishek Raj on 28-Oct-17.
  */
 @Component
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl implements AccountService  {
 
     @Autowired
     AccountRepository accountRepository;
@@ -37,4 +39,6 @@ public class AccountServiceImpl implements AccountService {
 
         return accountInfoResponse;
     }
+
+
 }
