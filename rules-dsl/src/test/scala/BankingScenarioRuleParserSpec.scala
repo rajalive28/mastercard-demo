@@ -1,12 +1,12 @@
-import dsl.RuleParser
+import dsl.BankingScenarioRuleParser
 import org.scalatest.FlatSpec
 
 /**
   * @author Mukut.
   */
-class RuleParserSpec extends FlatSpec{
+class BankingScenarioRuleParserSpec extends FlatSpec{
 
-  var parser = RuleParser
+  var parser = BankingScenarioRuleParser
 
   "A valid rule " should "be parseable" in {
 

@@ -3,7 +3,7 @@ package dsl
 /**
   * @author Mukut.
   */
-object AST {
+object BankingScenarioAST {
 
   sealed trait Expr
 

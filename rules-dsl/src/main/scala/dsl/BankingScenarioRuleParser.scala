@@ -1,6 +1,6 @@
 package dsl
 
-import dsl.AST._
+import dsl.BankingScenarioAST._
 
 import scala.util.parsing.combinator.{JavaTokenParsers, PackratParsers}
 import scala.util.parsing.input.CharSequenceReader
@@ -8,7 +8,7 @@ import scala.util.parsing.input.CharSequenceReader
 /**
   * @author Mukut.
   */
-object RuleParser extends JavaTokenParsers with PackratParsers{
+object BankingScenarioRuleParser extends JavaTokenParsers with PackratParsers{
 
   lazy val rule: Parser[ Rule ] =
     ("rule" ~> ruleName) ~ ("{" ~> ruleBody <~ "}") ^^ {
