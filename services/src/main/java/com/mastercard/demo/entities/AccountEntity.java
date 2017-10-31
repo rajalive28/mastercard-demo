@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author Abhishek Raj on 28-Oct-17.
+ * For the purpose of simplicity person and account entitites have been merged !!
  */
 @Entity
 @Table(name = "accounts")
@@ -27,6 +28,11 @@ public class AccountEntity extends AbstractPersistable<Long> {
     @NotBlank
     @Column
     private Double balance;
+
+    @NotNull
+    @NotBlank
+    @Column
+    private String password;
     @Column
     private String contactDetails;
 
@@ -60,6 +66,14 @@ public class AccountEntity extends AbstractPersistable<Long> {
 
     public void setContactDetails(String contactDetails) {
         this.contactDetails = contactDetails;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
