@@ -11,4 +11,4 @@ derby.log
 .settings
 .project
 .classpath
-services/target
+*/target/*
