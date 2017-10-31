@@ -1,8 +1,0 @@
-asset-plus-brl.helper.iml
-target
-build
-.classpath
-.settings
-.project
-src/main/xtend-gen
-xtend-gen

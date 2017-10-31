@@ -22,7 +22,6 @@
 		<module>grammer</module>
 		<module>grammer.ide</module>
 		<module>grammer.web</module>
-		<module>grammer.helper</module>
 	</modules>
 	<build>
 		<pluginManagement>

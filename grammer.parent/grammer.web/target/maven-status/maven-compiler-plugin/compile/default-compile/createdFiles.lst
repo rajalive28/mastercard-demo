@@ -1,5 +1,5 @@
 org\xtext\example\mydsl\web\MyDslWebModule.class
-org\xtext\example\mydsl\web\MyDslServlet.class
-org\xtext\example\mydsl\web\ServerLauncher.class
 org\xtext\example\mydsl\web\MyDslWebSetup.class
 org\xtext\example\mydsl\web\AbstractMyDslWebModule.class
+org\xtext\example\mydsl\web\MyDslServlet.class
+org\xtext\example\mydsl\web\ServerLauncher.class
