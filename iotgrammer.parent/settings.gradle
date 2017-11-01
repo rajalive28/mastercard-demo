@@ -1,0 +1,3 @@
+include 'iotgrammer'
+include 'iotgrammer.ide'
+include 'iotgrammer.idea'

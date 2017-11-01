@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Rules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ruleFragments" upperBound="-1"
+        eType="#//RuleFragments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleFragments">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ruleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ruleBody" eType="#//RuleBody"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleBody">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Event" eType="#//Event"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subEvent" upperBound="-1"
+        eType="#//SubEvent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Event">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attribute" eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="#//Symbol"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Attribute">
+    <eLiterals name="TEMPERATURE" literal="temperature"/>
+    <eLiterals name="VIBRATION" value="1" literal="vibration"/>
+    <eLiterals name="HUMIDITY" value="2" literal="humidity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Symbol">
+    <eLiterals name="GREATER" literal="&lt;"/>
+    <eLiterals name="LESS" value="1" literal=">"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubEvent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amountEvent" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entity" eType="#//Entity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+    <eLiterals name="TURN_ON" literal="turn_on"/>
+    <eLiterals name="TURN_OFF" value="1" literal="turn_off"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Entity">
+    <eLiterals name="LIGHT_BULB" literal="light_bulb"/>
+    <eLiterals name="FAN" value="1" literal="fan"/>
+    <eLiterals name="AC" value="2" literal="ac"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Rules">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ruleFragments" upperBound="-1"
+        eType="#//RuleFragments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleFragments">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ruleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ruleBody" eType="#//RuleBody"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleBody">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payerEvent" eType="#//PayerEvent"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subEvent" upperBound="-1"
+        eType="#//SubEvent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PayerEvent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="payerName" eType="#//PayerName"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="payerEventName" eType="#//PayerEventName"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="#//Symbol"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PayerName">
+    <eLiterals name="MINDTREE" literal="mindtree"/>
+    <eLiterals name="ROHIT" value="1" literal="rohit"/>
+    <eLiterals name="ABHISHEK" value="2" literal="abhishek"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PayerEventName">
+    <eLiterals name="CREDIT" literal="credit"/>
+    <eLiterals name="DEBIT" value="1" literal="debit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Symbol">
+    <eLiterals name="GREATER" literal="&lt;"/>
+    <eLiterals name="LESS" value="1" literal=">"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubEvent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amountEvent" eType="#//AmountEvent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="payerName" eType="#//PayerName"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AmountEvent">
+    <eLiterals name="TRANSFER" literal="transfer"/>
+    <eLiterals name="REQUEST" value="1" literal="request"/>
+  </eClassifiers>
+</ecore:EPackage>
