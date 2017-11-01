@@ -1,0 +1,6 @@
+iotgrammer.parent.iml
+.settings
+.classpath
+.project
+.gradle
+xtend-gen

@@ -14,6 +14,13 @@
         <module>rules-dsl</module>
         <module>iotgrammer.parent</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.xtend</groupId>
+            <artifactId>org.eclipse.xtend.lib</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
