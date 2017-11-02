@@ -85,6 +85,12 @@
             <groupId>com.mastercard.demo</groupId>
             <artifactId>rules-dsl</artifactId>
             <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         
