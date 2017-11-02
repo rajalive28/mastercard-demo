@@ -75,10 +75,6 @@ public class AccountServiceImpl implements AccountService  {
         String payee = amountTransferRequestVO.getPayee();
         Double amountToTransfer= amountTransferRequestVO.getAmount();
 
-
-
-
-
         return null;
     }
 

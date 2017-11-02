@@ -64,7 +64,7 @@ public class AccountController {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/createRule", method = RequestMethod.POST, produces = {APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/transfer", method = RequestMethod.POST, produces = {APPLICATION_JSON_VALUE})
     public AmountTransferResponseVO transferAmount(@RequestBody AmountTransferRequestVO amountTransferRequestVO) {
             return accountService.amountTransfer(amountTransferRequestVO);
     }
