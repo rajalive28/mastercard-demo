@@ -12,7 +12,7 @@ class BankingScenarioRuleParserSpec extends FlatSpec{
 
     val testRule=
       """rule my_rule {
-        |      when mindtree credit > 300000
+        |      when mindtree credits > 300000
         |      then transfer 3000 to abhishek
         |      then transfer 3000 to mukut
         |	}
@@ -25,7 +25,7 @@ class BankingScenarioRuleParserSpec extends FlatSpec{
   "A valid rule body" should "be parseable" in {
 
     val testRule=
-      """when mindtree credit > 300000
+      """when mindtree credits > 300000
         |      then transfer 3000 to abhishek
         |      then transfer 3000 to mukut
       """.stripMargin
@@ -38,7 +38,7 @@ class BankingScenarioRuleParserSpec extends FlatSpec{
   "A valid condition " should "be parseable" in {
 
     val testCond=
-      """when mindtree credit > 300000""".stripMargin
+      """when mindtree credits > 300000""".stripMargin
     assert(parser.parseSubstring(parser.condition,testCond).successful === true)
     println("----------------------------------------------------")
     println("payer: " + parser.parseSubstring(parser.condition, testCond).get.payer.name)
