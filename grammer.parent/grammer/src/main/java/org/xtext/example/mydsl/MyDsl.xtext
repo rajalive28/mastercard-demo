@@ -19,13 +19,13 @@ PayerEvent:
 	(payerName=PayerName) (payerEventName= PayerEventName) (symbol=Symbol) amount=INT;
 
 enum PayerName:
-	Antony_Hopkins = 'Antony Hopkins' |
-	Danielle_Radcliife = 'Danielle Radcliife' |
+	Antony_Hopkins = 'Antony_Hopkins' |
+	Danielle_Radcliife = 'Danielle_Radcliife' |
 	Employer = 'Employer' |
 	Landlord = 'Landlord' |
-	Credit_ACC = 'Credit ACC' |
-	EMI_ACC = 'EMI ACC' |
-	PPF_ACC = 'PPF ACC';
+	Credit_ACC = 'Credit_ACC' |
+	EMI_ACC = 'EMI_ACC' |
+	PPF_ACC = 'PPF_ACC';
 
 enum PayerEventName:
 	CREDIT='credits' | DEBIT='debits' ;
@@ -34,7 +34,7 @@ enum Symbol:
 	GREATER='<' | LESS='>' ;
 
 SubEvent:
-	'then' (amountEvent = AmountEvent) amount = INT 'to' (payerName=ID);
+	'then' (amountEvent = AmountEvent) amount = INT 'to' (payerName= PayerName);
 
 enum AmountEvent:
 	TRANSFER='transfer' | REQUEST='request' ;
