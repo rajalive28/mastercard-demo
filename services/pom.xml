@@ -81,5 +81,13 @@
             <artifactId>derby</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.mastercard.demo</groupId>
+            <artifactId>rules-dsl</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
+        
+
     </dependencies>
 </project>
