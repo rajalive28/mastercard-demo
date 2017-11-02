@@ -5,10 +5,13 @@ import com.mastercard.demo.entities.RuleEntity;
 import com.mastercard.demo.model.*;
 import com.mastercard.demo.respository.AccountRepository;
 import com.mastercard.demo.services.AccountService;
+import dsl.BankingScenarioAST;
+import dsl.BankingScenarioRuleParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import scala.util.parsing.combinator.Parsers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +58,21 @@ public class AccountServiceImpl implements AccountService  {
             oneByAccountNo.getRuleEntity().add(ruleEntity);
         }
         CreateRuleResponseVO createRuleResponseVO = new CreateRuleResponseVO();
+        Parsers.ParseResult result = BankingScenarioRuleParser
+                .parseSubstring(BankingScenarioRuleParser.rule(), createRuleRequestVO.getRuleContent());
+        if (!result.successful()) {
+            String msg = "The parser failed to parse the document. Incorrect syntax.";
+            LOGGER.error(msg);
+            LOGGER.error("Rule document content is: \n" + createRuleRequestVO.getRuleContent());
+        }else {
+            LOGGER.info("Rule Parsed Successfully Details are ");
+            LOGGER.info("================================");
+            BankingScenarioAST.Rule  rule = (BankingScenarioAST.Rule) result.get();
+            LOGGER.info("RuleName: {}", rule.ruleName() );
+        }
+        if (!(result.get() instanceof BankingScenarioAST.Rule)) {
+            LOGGER.error("Syntax error. Rule Document is not parseable.");
+        }
         try {
             accountRepository.save(oneByAccountNo);
             createRuleResponseVO.setMessage("Rule added to the account");
