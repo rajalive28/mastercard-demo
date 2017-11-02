@@ -1,7 +1,7 @@
 package com.mastercard.demo.controllers;
 
 import com.mastercard.demo.entities.AccountEntity;
-import com.mastercard.demo.model.AccountInfoResponse;
+import com.mastercard.demo.model.*;
 import com.mastercard.demo.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class AccountController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/accountInfo/{accountNo}", method = RequestMethod.GET, produces = {APPLICATION_JSON_VALUE})
-    public AccountEntity getAllAccountInfo(@PathVariable("accountNo") Long accountNo) {
+    public AccountEntity getAccountByAccountNo(@PathVariable("accountNo") Long accountNo) {
         return accountService.getAccountInfo(accountNo);
     }
 
@@ -35,6 +35,41 @@ public class AccountController {
     public AccountInfoResponse isAUser(@PathVariable("name") String name, @PathVariable("password") String password) {
         return accountService.authenticateUser(name,password);
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/accountInfo/all", method = RequestMethod.GET, produces = {APPLICATION_JSON_VALUE})
+    public List<AccountEntity> getAllAccountsInfo() {
+        return accountService.getAllAccountsInfo();
+    }
+
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/createRule", method = RequestMethod.POST, produces = {APPLICATION_JSON_VALUE})
+    public CreateRuleResponseVO createRule(@RequestBody CreateRuleRequestVO createRuleRequestVO) {
+        CreateRuleResponseVO createRuleResponseVO =  new CreateRuleResponseVO();
+
+        if (!(createRuleRequestVO.getAccountNo().toString().isEmpty() &&
+                createRuleRequestVO.getRuleContent().isEmpty())){
+            return accountService.createRule(createRuleRequestVO);
+        }else {
+            createRuleResponseVO.setStatus("failed");
+            createRuleResponseVO.setMessage("Incomplete parameters");
+        }
+    return createRuleResponseVO;
+
+    }
+
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/createRule", method = RequestMethod.POST, produces = {APPLICATION_JSON_VALUE})
+    public AmountTransferResponseVO transferAmount(@RequestBody AmountTransferRequestVO amountTransferRequestVO) {
+            return accountService.amountTransfer(amountTransferRequestVO);
+    }
+
+
 
 
 }

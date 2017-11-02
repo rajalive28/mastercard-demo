@@ -14,4 +14,5 @@ public interface AccountRepository extends CrudRepository<AccountEntity,Long> {
 
     AccountEntity findOneByAccountNo(Long accountNo);
     AccountEntity findOneByNameAndPassword(String name,String password);
+    List<AccountEntity> findAll();
 }

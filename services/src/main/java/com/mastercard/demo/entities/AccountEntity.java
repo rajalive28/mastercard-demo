@@ -1,6 +1,8 @@
 package com.mastercard.demo.entities;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -20,11 +22,9 @@ public class AccountEntity extends AbstractPersistable<Long> {
     @Column
     private String name;
     @NotNull
-    @NotBlank
     @Column
     private Long accountNo;
     @NotNull
-    @NotBlank
     @Column
     private Double balance;
 
@@ -35,12 +35,40 @@ public class AccountEntity extends AbstractPersistable<Long> {
     @Column
     private String contactDetails;
 
+    @Override
+    public String toString() {
+        return "AccountEntity{" +
+                "name='" + name + '\'' +
+                ", accountNo=" + accountNo +
+                ", balance=" + balance +
+                ", password='" + password + '\'' +
+                ", contactDetails='" + contactDetails + '\'' +
+                ", payeeEntity=" + payeeEntity +
+                ", ruleEntity=" + ruleEntity +
+                '}';
+    }
 
     @OneToMany(targetEntity = PayeeEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "account_payee_join_table",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "payees_id"))
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<PayeeEntity> payeeEntity;
+
+    @OneToMany(targetEntity = RuleEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "account_rule_join_table",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "rule_id"))
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<RuleEntity> ruleEntity;
+
+    public List<RuleEntity> getRuleEntity() {
+        return ruleEntity;
+    }
+
+    public void setRuleEntity(List<RuleEntity> ruleEntity) {
+        this.ruleEntity = ruleEntity;
+    }
 
     public List<PayeeEntity> getPayeeEntity() {
         return payeeEntity;
