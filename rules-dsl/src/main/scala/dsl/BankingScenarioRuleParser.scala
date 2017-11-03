@@ -33,7 +33,9 @@ object BankingScenarioRuleParser extends JavaTokenParsers with PackratParsers{
   lazy val ruleName: Parser[ String ] =
     ident ^^ { case ruleName => ruleName }
 
-  lazy val actionVerb = "transfer"|"request" ^^ (_.toString)
+  lazy val actionVerb = "transfer"|"request" ^^ {
+    av => av
+  }
 
   lazy val payee: Parser[ Payee ] =
     ident ^^ { case payee => Payee(payee) }
@@ -43,7 +45,7 @@ object BankingScenarioRuleParser extends JavaTokenParsers with PackratParsers{
 
   lazy val amount = decimalNumber ^^ (_.toDouble)
 
-  lazy val conditionalOperator = ">"|"<" ^^ {_.toString}
+  lazy val conditionalOperator = ">"|"<" ^^ {co => co}
 
   def parseSubstring[ T ](parser: Parser[ T ], input: String): ParseResult[ T ] = {
     parse(parser, new PackratReader(new CharSequenceReader(input)))
