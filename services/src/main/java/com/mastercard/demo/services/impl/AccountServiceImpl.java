@@ -7,10 +7,12 @@ import com.mastercard.demo.respository.AccountRepository;
 import com.mastercard.demo.services.AccountService;
 import dsl.BankingScenarioAST;
 import dsl.BankingScenarioRuleParser;
+import org.apache.commons.jexl3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import scala.collection.JavaConverters;
 import scala.util.parsing.combinator.Parsers;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import java.util.UUID;
 @Component
 public class AccountServiceImpl implements AccountService  {
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
+
+    private static final JexlEngine jexl = new JexlBuilder().cacheThreshold(1024).cache(512).create();
 
     @Autowired
     AccountRepository accountRepository;
@@ -88,12 +92,61 @@ public class AccountServiceImpl implements AccountService  {
 
     @Override
     public AmountTransferResponseVO amountTransfer(AmountTransferRequestVO amountTransferRequestVO) {
-        AmountTransferRequestVO amountTransferRequestVO1 = new AmountTransferRequestVO();
+        AmountTransferResponseVO amountTransferResponseVO = new AmountTransferResponseVO();
         String payer =amountTransferRequestVO.getPayer();
         String payee = amountTransferRequestVO.getPayee();
         Double amountToTransfer= amountTransferRequestVO.getAmount();
+        AccountEntity accountEntityPayer = accountRepository.findOneByName(payer);
+        AccountEntity accountEntityPayee = accountRepository.findOneByName(payee);
+        if (accountEntityPayee == null || accountEntityPayer == null){
+            LOGGER.info("Payer or Payee doesn't exists");
+        }else {
 
-        return null;
+            performTransaction(accountEntityPayee, accountEntityPayer, amountToTransfer);
+        }
+        executeRules(accountEntityPayee, amountToTransfer);
+        amountTransferResponseVO.setStatus("success");
+        amountTransferResponseVO.setMessage("successfully transfered");
+        return amountTransferResponseVO;
+    }
+
+    private void executeRules(AccountEntity accountEntityPayee, Double amountToTransfer) {
+        accountEntityPayee.getRuleEntity().forEach(ruleEntity -> {
+            Parsers.ParseResult result = BankingScenarioRuleParser
+                    .parseSubstring(BankingScenarioRuleParser.rule(), ruleEntity.getRuleContent());
+            boolean ruleFired = evaluateRule((BankingScenarioAST.Rule) result.get(), accountEntityPayee, amountToTransfer);
+            if (ruleFired){
+                LOGGER.info("Rule Fired.");
+                performAction((BankingScenarioAST.Rule) result.get(), accountEntityPayee);
+            }
+        });
+    }
+
+    private void performAction(BankingScenarioAST.Rule rule, AccountEntity accountEntityPayer) {
+       List<BankingScenarioAST.Action> actionList= JavaConverters.seqAsJavaListConverter(rule.ruleBody().actions()).asJava();
+       actionList.forEach(action -> {
+           LOGGER.info("Found Payee in Rule Action");
+           AccountEntity payee = accountRepository.findOneByName(action.payee().name().trim());
+           if (action.actionVerb().trim().equalsIgnoreCase("transfer")){
+               performTransaction(payee, accountEntityPayer,action.amount());
+           }
+       });
+    }
+
+    private void performTransaction(AccountEntity payee, AccountEntity accountEntityPayer, Double amountToTransfer) {
+        accountEntityPayer.setBalance(accountEntityPayer.getBalance() - amountToTransfer);
+        payee.setBalance(payee.getBalance() + amountToTransfer);
+        accountRepository.save(accountEntityPayer);
+        accountRepository.save(payee);
+    }
+
+    private boolean evaluateRule(BankingScenarioAST.Rule rule, AccountEntity accountEntityPayee, Double amountToTransfer) {
+        String evalString = rule.ruleBody().condition().conditionalExpressionString();
+        LOGGER.info("ConditionString is : {}", evalString);
+        JexlExpression e = jexl.createExpression(evalString);
+        JexlContext jc = new MapContext();
+        jc.set("credits", amountToTransfer);
+        return (boolean) e.evaluate(jc);
     }
 
 
