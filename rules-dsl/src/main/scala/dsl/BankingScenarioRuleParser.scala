@@ -52,4 +52,5 @@ object BankingScenarioRuleParser extends JavaTokenParsers with PackratParsers{
   }
 
   def anyString = ".+".r
+  //def anyString = "(([a-zA-Z]+))(\\s*)(>|<)(\\s*)(\\d+)".r
 }

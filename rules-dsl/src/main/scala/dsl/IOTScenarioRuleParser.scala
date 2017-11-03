@@ -21,15 +21,15 @@ object IOTScenarioRuleParser extends JavaTokenParsers with PackratParsers{
     }
 
   lazy val condition : Parser[ Condition ] =
-    "when" ~> anyString  ^^ {
+    "when" ~> anyString <~ "then" ^^ {
       case (conditionalExpression) => Condition(conditionalExpression)
     }
 
   lazy val action : Parser [Action] =
-    "then" ~> actionVerb ~ entity ^^ {
+    actionVerb ~ entity ^^ {
       case (actionVerb ~ entity) => Action(actionVerb, entity)
     }
-  lazy val actionVerb = "TURN ON"|"TURN OFF" ^^ (_.toString)
+  lazy val actionVerb = "TURN_ON"|"TURN_OFF" ^^ (_.toString)
 
   lazy val ruleName: Parser[ String ] =
     ident ^^ { case ruleName => ruleName }
@@ -41,6 +41,6 @@ object IOTScenarioRuleParser extends JavaTokenParsers with PackratParsers{
     parse(parser, new PackratReader(new CharSequenceReader(input)))
   }
 
-  def anyString = ".+".r
+  def anyString = "(([a-zA-Z]+))(\\s*)(>|<)(\\s*)(\\d+)".r
 
 }

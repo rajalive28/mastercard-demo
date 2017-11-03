@@ -24,8 +24,7 @@ class BankingScenarioRuleParserSpec extends FlatSpec{
   "A valid rule body" should "be parseable" in {
 
     val testRule=
-      """when mindtree credits > 300000
-         | then transfer 3000 to abhishek then transfer 3000 to mukut
+      """when mindtree credits > 300000 then transfer 3000 to abhishek then transfer 3000 to mukut
       """.stripMargin
     assert(parser.parseSubstring(parser.ruleBody,testRule).successful === true)
     println("action count: " + parser.parseSubstring(parser.ruleBody, testRule).get.actions.size)
